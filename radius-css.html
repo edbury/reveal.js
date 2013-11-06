@@ -93,7 +93,7 @@
 							This is also the place to <code>@import</code> our reset or normalization.
 						</p>
 						<pre><code data-trim>
-// sass-dir/_base.scss
+/* sass-dir/_base.scss */
 
 body, form {
     margin: 0;
@@ -115,7 +115,7 @@ a:hover {
 							Out of the box, SMACSS uses the <strong>Layout</strong> category to house high-level single-use selectors that define content areas and positioning (e.g. <code>#header</code>). It can also house alternate layouts for these selectors based on wrapper classes, like <code>.l-fixed #header</code> and <code>.l-fluid #header</code>.
 						</p>
 						<pre><code data-trim>
-// sass-dir/_layout.scss
+/* sass-dir/_layout.scss */
 
 #header, #article, #footer {
     width: 960px;
@@ -139,7 +139,7 @@ a:hover {
 							</ul>
 						</p>
 						<pre><code data-trim>
-// sass-dir/module/_cup.scss
+/* sass-dir/module/_cup.scss */
 
 .cup {
     display: block;
@@ -159,8 +159,21 @@ a:hover {
 					</section>
 					<section>
 						<h2>State</h2>
+						<p>
+							<strong>States</strong> represent modules, layouts, and elements in various states. They override default styles, and can be applied globally or as module states.
+							<ul>
+								<li>Global states like <code>.is-hidden</code> belong in the <code>_states.scss</code> file.</li>
+								<li>States specific to certain modules, however, belong with the module they affect.</li>
+								<li>Media queries are just fancy states, and SASS lets us nest them in modules.</li>
+								<li>States are also our JS dependency classes.</li>
+							</ul>
+						</p>
+						<small>Skip down for an example.</small>
+					</section>
+					<section>
+						<h2>States in Action</h2>
 						<pre><code data-trim>
-// sass-dir/_states.scss
+/* sass-dir/_states.scss */
 
 .is-hidden {
     position: absolute; 
@@ -169,12 +182,208 @@ a:hover {
     height: 1px; width: 1px; 
     margin: -1px; padding: 0; border: 0; 
 }
+						</code></pre>
+						<pre><code data-trim>
 
-#sass-dir/module/_beer.scss
+/* sass-dir/module/_beer.scss */
+
 .is-beer-cold {
     opacity: 0.5;
+    height: 100%;
 }
 						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Markup Nightmare</h2>
+						<p>SMACSS (and OOCSS) both support a multi-class approach to styling elements. Need a brown cup module? Throw <code>.cup</code> and <code>.brown</code> on there.</p>
+						<p>That's ugly and hard to maintain.</p>
+						<p>We could use <code>@extend</code> to add the <code>.brown</code> class to cup (a la LESS), but then we end up with those properties duplicated in our stylesheet.</p>
+						<p>Not so with <code>%placeholder</code> patterns.</p>
+					</section>
+					<section>
+						<h2>OOSass</h2>
+						<p>
+							<a href="http://ianstormtaylor.com/oocss-plus-sass-is-the-best-way-to-css/">OOSass</a> is a combination of OOCSS and Sass put together by Ian Storm Taylor. The biggest takeaway from his article is the idea of using "patterns".
+						</p> 
+						<pre><code data-trim>
+%separator {
+    border-top: 1px solid black;
+}
+
+hr {
+    @extend %separator;
+}
+
+.separated {
+    @extend %separator;
+}
+						</code></pre>
+						<small>Gives us:</small>
+						<pre><code data-trim>
+hr, .separated {
+    border-top: 1px solid black;
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Why is this Awesome?</h2>
+						<p>
+							Using <code>%placeholders</code> with <code>@extend</code>, you can address two of SMACSS's big concerns: 
+							<ol>
+								<li>apply patterns without additional classes in your markup</li>
+								<li>avoid the code bloat that comes with using <code>@extend</code></li>
+							</ol>
+						</p>
+					</section>
+					<section>
+						<h2>_patterns.scss</h2>
+						<ul>
+							<li>Patterns act somewhere between a module and a variable.</li> 
+							<li>They're best used to extend modules and states.</li>
+							<li>They should do one thing, and do them well.</li>
+							<li>You can use patterns within patterns.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Example: Lip</h2>
+						<p>
+							Cribbed from Taylor, this creates a lip above the content underneath it.
+						</p>
+						<pre><code data-trim>
+/* sass-dir/_patterns.scss */
+
+%lip {
+    clear: both;
+    display: block;
+    height: 5px;
+    background: url('/public/images/patterns/lip/lip.png') no-repeat;
+    background-size: 100% 100%;
+}
+						</code></pre>
+						<pre><code data-trim>
+
+/* sass-dir/module/_beer.scss */
+
+.beer-rim {
+	@extend %lip;
+	opacity: 0.5;
+	height: 100%;
+}
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Envato</h2>
+						<p>
+							Envato is using a <a href="http://webuild.envato.com/blog/how-to-scale-and-maintain-legacy-css-with-sass-and-smacss/">modified SMACSS/BEM combo</a>. The way they handle child positioning is appalling, but they have some good ideas.
+						</p>
+					</section>
+					<section>
+						<h2>Base/State</h2>
+						<p>
+							Pretty much straight SMACSS: 
+							<ul>
+								<li><strong>Base</strong> styles element defaults, <code>@import _normalize.scss</code>.</li>
+								<li><strong>States</strong> are divided into global and module states</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<h2>Layout</h2>
+						<p>Envato eschews the SMACSS <strong>Layout</strong> section entirely. Everything that is not a <strong>Base</strong> style or a global <strong>State</strong> is in a module.</p>
+					</section>
+					<section>
+						<h2>Module/Layout Distinction Unnecessary?</h2>
+						<p>Why?
+							<ul>
+								<li>Modules typically "lay out" their children anyway.</li>
+								<li>Even if a component won't be reused, there is no benefit to treating it differently.</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<h2>Module</h2>
+						<p>
+							Envato has a great set of rules for <strong>Modules</strong>:
+							<ul>
+								<li>Modules are standalone and reusable.</li>
+								<li>They assume no knowledge of their parent container.</li>
+								<li>Their only dependencies are <strong>Base</strong> styles.</li>
+								<li>Always use child selectors (<code>&gt;</code>) to minimize depth of applicability.</li>
+								<li><code>width</code>, <code>position</code>, and <code>margin</code> assume knowledge of the container - <code>width: 100%</code> or inline everything</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<h2>However</h2>
+						<p>
+							They engage in some serious HTML ugliness to decouple CSS for nested components:
+						</p>
+						<pre><code data-trim>
+<div class="my-module">
+
+    <div class="my-module__child-component">
+        <div class="child-component">
+
+            <div class="child-component__grandchild-component">
+                <div class="grandchild-component--modifier">
+                    Really?
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+						</code></pre>
+						<p>What.</p>
+					</section>
+					<section>
+						<h2>Mixins</h2>
+						<p>
+							Each mixin gets its own file in the <code>mixins</code> directory. This also applies to mixin libraries like <a href="http://compass-style.org/">Compass</a>.
+						</p>
+						<pre><code data-trim>
+sass-dir/
+    mixins/
+        _embiggen.scss
+        _vertical-rhythm.scss
+        compass/
+				        </code></pre>
+					</section>
+					<section>
+						<h2>Grid</h2>
+						<p>
+							<q>Even our grid framework is just a module.</q>
+						</p>
+						<p>
+							Envato is using <a href="http://susy.oddbird.net/">Suzy</a>, which allows them to define grid placement within classes instead of using additional markup to position ui elements (a la Foundation).
+						</p>
+						<pre><code data-trim>
+.page__sidebar {
+    @include span-columns(3, 12);
+}
+
+.page__content {
+    @include span-columns(9 omega, 12); 
+}
+						</code></pre>
+						<p>
+							<small>Parents positioning their child elements within themselves.</small>
+						</p>
+					</section>
+					<section>
+						<h2>However</h2>
+						<p>
+							First, every module that positions its children is now reliant on the grid module. Sure, you don't just get rid of your grid without consideration, but it's a big dependency and <em>not</em> a <strong>Base</strong> style.
+						</p>
+						<p>
+							Second, as noted earlier, they end up requiring tons of additional markup anyway. Why go through the trouble of using grid <code>@extends</code> if you're simply creating additional positioning classes?
+						</p>
+					</section>
 				</section>
 			</div>
 
