@@ -630,6 +630,171 @@ sass/
                         </code></pre>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h2>dawn comes every day</h2>
+                        <p>
+                            You made it. The actual proposed structure and styleguide.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Organization</h2>
+                        <pre><code data-trim>
+sass/
+    layout/
+    module/
+    _base.scss
+    _states.scss
+    _variabls.scss
+    app.scss
+                        </code></pre>
+                        <p>
+                            At it's simplest, the Radius UI would be organized into the main SMACSS components: <strong>Base</strong>, <strong>Module</strong>, <strong>State</strong>, and <strong>Layout</strong>. Onto that, we will also add the concept of <strong>Patterns</strong>. 
+                        </p>
+                        <p>
+                            A variables partial and manifest are also going to be necessary!
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Expanded Organization</h2>
+                        <pre><code data-trim>
+sass/
+    layout/
+    libraries/
+    mixins/
+    module/
+    _base.scss
+    _functions.scss
+    _patterns.scss
+    _states.scss
+    _variabls.scss
+                        </code></pre>
+                        <p>
+                            'Global' non-presentation Sass could start in the appropriate files and be separated out into directories as a single-file management becomes unwieldy  (e.g. <code>mixins/</code>, <code>libraries/</code>, <code>_functions.scss</code>, and <code>_patterns.scss</code>).
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Base</h2>
+                        <p>
+                            As with SMACSS, <strong>Base</strong> is where we define our UI foundation. The main rule here is it won't contain anything other than element, descendent, child, attribute, and/or pseudo-class selectors.
+                        </p>
+                        <p>
+                            We will also import our normalization in this file, not the manifest - normalization is not modular, it defines our element foundation, even if it's an import.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Expanding Base</h2>
+                        <p>
+                            As the app grows, we may need to expand <strong>Base</strong> to include more robust styles, mixins, functions, patterns, or external libraries. The key rules for expanding are:
+                                <ul>
+                                    <li>Separate presentation and function.</li>
+                                    <li>Stay standard, stay organized.</li>
+                                </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Module</h2>
+                        <p>
+                            <strong>Modules</strong> are the reusable, standalone components that make up the site.
+                            <ul>
+                                <li>No IDs or element selectors.</li>
+                                <li>No property dependencies outside the module, patterns, or base.</li>
+                                <li>They assume no knowledge of their parent container.</li>
+                                <li>Always use child selectors (>) to minimize depth of applicability.</li>
+                                <li>No nesting - namespace our selectors with BEM-style naming to scope CSS.</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Expanding Modules</h2>
+                        <p>
+                            <strong>Modules</strong> may also include their own mixins, patterns, functions, and states. The rule for expansion here is this:
+                        </p>
+                        <p>
+                            <q>Everybody gets one.</q>
+                        </p>
+                        <p>
+                            Any module addenda stays in the <code>_module.scss</code> file until we have more than one of a type. When that happens break the group out into their own file and import it at the top of the module. (e.g. one mixin stays, two states get broken out into <code>_module-states.scss</code> in the module's directory).
+                        </p>
+                        <p>
+                            If you can abstract any module addenda to apply globally (a cool pattern), do it - but don't force it. Embrace the scope.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>State</h2>
+                        <p>
+                            States follow the basic SMACCS rules and categorization. Thank god something is simple.
+                        </p>
+                        <p>
+                            States live in <code>sass/_states.scss</code> unless specific to a module.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Layout</h2>
+                        <p>
+                            I suggest we follow the layout pattern described on <a href="#/7/6">this slide</a>. It separates presentation and position without modules requiring and knowledge of their parents <em>or</em> Envato-style nightmare markup.
+                        </p>
+                        <pre><code data-trim>
+/* sass/layouts/_layout-countertop.scss */
+
+.layout-countertop.scss {
+    
+    .beer {
+        @include span-columns(3);
+    }
+
+    .cheeseboard {
+        @include span-columns(8, omega);
+    }
+
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Patterns</h2>
+                        <p>
+                            Our <code>_patterns.scss</code> partial will hold all of our UI placehold properties. Remember:
+                            <ul>
+                                <li>Patterns should do <em>one thing</em> and do it well</li>
+                                <li>Patterns within patterns are cool, but don't go crazy</li>
+                            </ul>
+                        </p>
+                        <p>
+                            As a warning, module-specific patterns are allowed; however, patterns help describe the foundational properties of the UI, right after elements. If you are making a lot of module-specific patterns, take a step back, it might be a bad sign.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>The big picture</h2>
+                        <pre><code data-trim>
+sass/
+    layout/
+        _layout-dashboard.scss
+        _layout-yp.scss
+    libraries/
+    mixins/
+        _vertical-rhythm.scss
+    module/
+        beer/
+            _beer.scss
+            _beer-states.scss
+    _base.scss
+    _functions.scss
+    _patterns.scss
+    _states.scss
+    _variables.scss
+    app.scss
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Thanks</h2>
+                        <p>
+                            I know that was a bit of a haul, and there are some sticky points. 
+                        </p>
+                        <p>
+                            Let's talk, raise questions, and nail this.
+                        </p>
+                    </section>
+                </section>
             </div>
 
         </div>
