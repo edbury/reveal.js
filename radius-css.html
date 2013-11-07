@@ -1,98 +1,98 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-		<title>Structuring Our CSS</title>
+        <title>Structuring Our CSS</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
 
-	<body>
+    <body>
 
-		<div class="reveal">
+        <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>(S)CSS</h1>
-					<h3>Structure &amp; Best Practices</h3>
-				</section>
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>(S)CSS</h1>
+                    <h3>Structure &amp; Best Practices</h3>
+                </section>
 
-				<section>
-					<h2>Our CSS Sucks</h2>
-					<p>
-						It's actually not that horrible, but it does suffer from some serious problems:
-						<ul>
-							<li>It's disorganized, hard to scan, needs structure &amp; style.</li>
-							<li>There's a ton of duplication, over-specifying, and cross-naming.</li>
-							<li>We aren't making much use of what pre-processing has to offer.</li>
-						</ul>
-					</p>
-				</section>
+                <section>
+                    <h2>Our CSS Sucks</h2>
+                    <p>
+                        It's actually not that horrible, but it does suffer from some serious problems:
+                        <ul>
+                            <li>It's disorganized, hard to scan, needs structure &amp; style.</li>
+                            <li>There's a ton of duplication, over-specifying, and cross-naming.</li>
+                            <li>We aren't making much use of what pre-processing has to offer.</li>
+                        </ul>
+                    </p>
+                </section>
 
-				<section>
-					<h2>What Do We Do?</h2>
-					<p>
-						Start with <a href="http://smacss.com/">SMACSS</a>, take hints from where other people have improved on it, and learn from where they've gone astray.
-					</p>
-				</section>
+                <section>
+                    <h2>What Do We Do?</h2>
+                    <p>
+                        Start with <a href="http://smacss.com/">SMACSS</a>, take hints from where other people have improved on it, and learn from where they've gone astray.
+                    </p>
+                </section>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>SMACSS</h2>
-						<h3>Scalable and Modular Architecture for CSS</h3>
-						<p>
-							Jonas has shared the pdf with most of us, but this section offers a little breakdown so we can all start on the same page.
-						</p>
-						<p><small>(Nav down for SMACSS, continue right if you're familiar.)</small></p>
-					</section>
-					<section>
-						<h2>In a Nutshell</h2>
-						<p>
-							SMACSS is a way to organize your stylesheet(s) by categorizing your rules; each category then follows certain rules.
-						</p>
-						<p>
-							Snook - the author of SMACSS - gives us five categories:
-							<br> 
-							<strong>Base</strong>, <strong>Layout</strong>, <strong>Module</strong>, <strong>State</strong>, and <strong>Theme</strong>. 
-						</p>
-						<p>
-							We aren't really concerned with Theme, but understanding the other four will give us a huge leg up.
-						</p>
-					</section>
-					<section>
-						<h2>Base</h2>
-						<p>
-							<strong>Base</strong> is where we define our elements and default styles. The main rule here is it shouldn't contain any classes (or IDs) - element, descendent, child, attribute, and/or pseudo-class selectors only.
-						</p>
-						<p>
-							This is also the place to <code>@import</code> our reset or normalization.
-						</p>
-						<pre><code data-trim>
+                <!-- Example of nested vertical slides -->
+                <section>
+                    <section>
+                        <h2>SMACSS</h2>
+                        <h3>Scalable and Modular Architecture for CSS</h3>
+                        <p>
+                            Jonas has shared the pdf with most of us, but this section offers a little breakdown so we can all start on the same page.
+                        </p>
+                        <p><small>(Nav down for SMACSS, continue right if you're familiar.)</small></p>
+                    </section>
+                    <section>
+                        <h2>In a Nutshell</h2>
+                        <p>
+                            SMACSS is a way to organize your stylesheet(s) by categorizing your rules; each category then follows certain rules.
+                        </p>
+                        <p>
+                            Snook - the author of SMACSS - gives us five categories:
+                            <br> 
+                            <strong>Base</strong>, <strong>Layout</strong>, <strong>Module</strong>, <strong>State</strong>, and <strong>Theme</strong>. 
+                        </p>
+                        <p>
+                            We aren't really concerned with Theme, but understanding the other four will give us a huge leg up.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Base</h2>
+                        <p>
+                            <strong>Base</strong> is where we define our elements and default styles. The main rule here is it shouldn't contain any classes (or IDs) - element, descendent, child, attribute, and/or pseudo-class selectors only.
+                        </p>
+                        <p>
+                            This is also the place to <code>@import</code> our reset or normalization.
+                        </p>
+                        <pre><code data-trim>
 /* sass-dir/_base.scss */
 
 body, form {
@@ -107,38 +107,38 @@ a {
 a:hover {
     color: #03F;
 }
-						</code></pre>
-					</section>
-					<section>
-						<h2>Layout</h2>
-						<p>
-							Out of the box, SMACSS uses the <strong>Layout</strong> category to house high-level single-use selectors that define content areas and positioning (e.g. <code>#header</code>). It can also house alternate layouts for these selectors based on wrapper classes, like <code>.l-fixed #header</code> and <code>.l-fluid #header</code>.
-						</p>
-						<pre><code data-trim>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Layout</h2>
+                        <p>
+                            Out of the box, SMACSS uses the <strong>Layout</strong> category to house high-level single-use selectors that define content areas and positioning (e.g. <code>#header</code>). It can also house alternate layouts for these selectors based on wrapper classes, like <code>.l-fixed #header</code> and <code>.l-fluid #header</code>.
+                        </p>
+                        <pre><code data-trim>
 /* sass-dir/_layout.scss */
 
 #header, #article, #footer {
     width: 960px;
     margin: auto;
 }
-						</code></pre>
-						<p>
-							Handling layout is probably the most contentious part of this process. We'll come back to this a few times.
-						</p>
-					</section>
-					<section>
-						<h2>Module</h2>
-						<p>
-							<strong>Modules</strong> are the reusable, standalone components that make up the site: cards, dialogs, lead lists, etc.
-						</p>
-						<p>
-							Two big rules:
-							<ul>
-								<li>No IDs or element selectors.</li>
-								<li>No property dependencies outside the module and base.</li>
-							</ul>
-						</p>
-						<pre><code data-trim>
+                        </code></pre>
+                        <p>
+                            Handling layout is probably the most contentious part of this process. We'll come back to this a few times.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Module</h2>
+                        <p>
+                            <strong>Modules</strong> are the reusable, standalone components that make up the site: cards, dialogs, lead lists, etc.
+                        </p>
+                        <p>
+                            Two big rules:
+                            <ul>
+                                <li>No IDs or element selectors.</li>
+                                <li>No property dependencies outside the module and base.</li>
+                            </ul>
+                        </p>
+                        <pre><code data-trim>
 /* sass-dir/module/_cup.scss */
 
 .cup {
@@ -150,29 +150,29 @@ a:hover {
     @extend .cup;
     background-color: #0066cc;
 }
-						</code></pre>
-						<pre><code data-trim>
+                        </code></pre>
+                        <pre><code data-trim>
 <div class="cup-glass">
     This cup is a glass.
 </div>
-						</code></pre>
-					</section>
-					<section>
-						<h2>State</h2>
-						<p>
-							<strong>States</strong> represent modules, layouts, and elements in various states. They override default styles, and can be applied globally or as module states.
-							<ul>
-								<li>Global states like <code>.is-hidden</code> belong in the <code>_states.scss</code> file.</li>
-								<li>States specific to certain modules, however, belong with the module they affect.</li>
-								<li>Media queries are just fancy states, and SASS lets us nest them in modules.</li>
-								<li>States are also our JS dependency classes.</li>
-							</ul>
-						</p>
-						<small>Skip down for an example.</small>
-					</section>
-					<section>
-						<h2>States in Action</h2>
-						<pre><code data-trim>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>State</h2>
+                        <p>
+                            <strong>States</strong> represent modules, layouts, and elements in various states. They override default styles, and can be applied globally or as module states.
+                            <ul>
+                                <li>Global states like <code>.is-hidden</code> belong in the <code>_states.scss</code> file.</li>
+                                <li>States specific to certain modules, however, belong with the module they affect.</li>
+                                <li>Media queries are just fancy states, and SASS lets us nest them in modules.</li>
+                                <li>States are also our JS dependency classes.</li>
+                            </ul>
+                        </p>
+                        <small>Skip down for an example.</small>
+                    </section>
+                    <section>
+                        <h2>States in Action</h2>
+                        <pre><code data-trim>
 /* sass-dir/_states.scss */
 
 .is-hidden {
@@ -182,8 +182,8 @@ a:hover {
     height: 1px; width: 1px; 
     margin: -1px; padding: 0; border: 0; 
 }
-						</code></pre>
-						<pre><code data-trim>
+                        </code></pre>
+                        <pre><code data-trim>
 
 /* sass-dir/module/_beer.scss */
 
@@ -191,23 +191,23 @@ a:hover {
     opacity: 0.5;
     height: 100%;
 }
-						</code></pre>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>Markup Nightmare</h2>
-						<p>SMACSS (and OOCSS) both support a multi-class approach to styling elements. Need a brown cup module? Throw <code>.cup</code> and <code>.brown</code> on there.</p>
-						<p>That's ugly and hard to maintain.</p>
-						<p>We could use <code>@extend</code> to add the <code>.brown</code> class to cup (a la LESS), but then we end up with those properties duplicated in our stylesheet.</p>
-						<p>Not so with <code>%placeholder</code> patterns.</p>
-					</section>
-					<section>
-						<h2>OOSass</h2>
-						<p>
-							<a href="http://ianstormtaylor.com/oocss-plus-sass-is-the-best-way-to-css/">OOSass</a> is a combination of OOCSS and Sass put together by Ian Storm Taylor. The biggest takeaway from his article is the idea of using "patterns".
-						</p> 
-						<pre><code data-trim>
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Markup Nightmare</h2>
+                        <p>SMACSS (and OOCSS) both support a multi-class approach to styling elements. Need a brown cup module? Throw <code>.cup</code> and <code>.brown</code> on there.</p>
+                        <p>That's ugly and hard to maintain.</p>
+                        <p>We could use <code>@extend</code> to add the <code>.brown</code> class to cup (a la LESS), but then we end up with those properties duplicated in our stylesheet.</p>
+                        <p>Not so with <code>%placeholder</code> patterns.</p>
+                    </section>
+                    <section>
+                        <h2>OOSass</h2>
+                        <p>
+                            <a href="http://ianstormtaylor.com/oocss-plus-sass-is-the-best-way-to-css/">OOSass</a> is a combination of OOCSS and Sass put together by Ian Storm Taylor. The biggest takeaway from his article is the idea of using "patterns".
+                        </p> 
+                        <pre><code data-trim>
 %separator {
     border-top: 1px solid black;
 }
@@ -219,39 +219,39 @@ hr {
 .separated {
     @extend %separator;
 }
-						</code></pre>
-						<small>Gives us:</small>
-						<pre><code data-trim>
+                        </code></pre>
+                        <small>Gives us:</small>
+                        <pre><code data-trim>
 hr, .separated {
     border-top: 1px solid black;
 }
-						</code></pre>
-					</section>
-					<section>
-						<h2>Why is this Awesome?</h2>
-						<p>
-							Using <code>%placeholders</code> with <code>@extend</code>, you can address two of SMACSS's big concerns: 
-							<ol>
-								<li>apply patterns without additional classes in your markup</li>
-								<li>avoid the code bloat that comes with using <code>@extend</code></li>
-							</ol>
-						</p>
-					</section>
-					<section>
-						<h2>_patterns.scss</h2>
-						<ul>
-							<li>Patterns act somewhere between a module and a variable.</li> 
-							<li>They're best used to extend modules and states.</li>
-							<li>They should do one thing, and do them well.</li>
-							<li>You can use patterns within patterns.</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Example: Lip</h2>
-						<p>
-							Cribbed from Taylor, this creates a lip above the content underneath it.
-						</p>
-						<pre><code data-trim>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Why is this Awesome?</h2>
+                        <p>
+                            Using <code>%placeholders</code> with <code>@extend</code>, you can address two of SMACSS's big concerns: 
+                            <ol>
+                                <li>apply patterns without additional classes in your markup</li>
+                                <li>avoid the code bloat that comes with using <code>@extend</code></li>
+                            </ol>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>_patterns.scss</h2>
+                        <ul>
+                            <li>Patterns act somewhere between a module and a variable.</li> 
+                            <li>They're best used to extend modules and states.</li>
+                            <li>They should do one thing, and do them well.</li>
+                            <li>You can use patterns within patterns.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Example: Lip</h2>
+                        <p>
+                            Cribbed from Taylor, this creates a lip above the content underneath it.
+                        </p>
+                        <pre><code data-trim>
 /* sass-dir/_patterns.scss */
 
 %lip {
@@ -261,68 +261,71 @@ hr, .separated {
     background: url('/public/images/patterns/lip/lip.png') no-repeat;
     background-size: 100% 100%;
 }
-						</code></pre>
-						<pre><code data-trim>
+                        </code></pre>
+                        <pre><code data-trim>
 
 /* sass-dir/module/_beer.scss */
 
 .beer-rim {
-	@extend %lip;
-	opacity: 0.5;
-	height: 100%;
+    @extend %lip;
+    opacity: 0.5;
+    height: 100%;
 }
-						</code></pre>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>Envato</h2>
-						<p>
-							Envato is using a <a href="http://webuild.envato.com/blog/how-to-scale-and-maintain-legacy-css-with-sass-and-smacss/">modified SMACSS/BEM combo</a>. The way they handle child positioning is appalling, but they have some good ideas.
-						</p>
-					</section>
-					<section>
-						<h2>Base/State</h2>
-						<p>
-							Pretty much straight SMACSS: 
-							<ul>
-								<li><strong>Base</strong> styles element defaults, <code>@import _normalize.scss</code>.</li>
-								<li><strong>States</strong> are divided into global and module states</li>
-							</ul>
-						</p>
-					</section>
-					<section>
-						<h2>Layout</h2>
-						<p>Envato eschews the SMACSS <strong>Layout</strong> section entirely. Everything that is not a <strong>Base</strong> style or a global <strong>State</strong> is in a module.</p>
-					</section>
-					<section>
-						<h2>Module/Layout Distinction Unnecessary?</h2>
-						<p>Why?
-							<ul>
-								<li>Modules typically "lay out" their children anyway.</li>
-								<li>Even if a component won't be reused, there is no benefit to treating it differently.</li>
-							</ul>
-						</p>
-					</section>
-					<section>
-						<h2>Module</h2>
-						<p>
-							Envato has a great set of rules for <strong>Modules</strong>:
-							<ul>
-								<li>Modules are standalone and reusable.</li>
-								<li>They assume no knowledge of their parent container.</li>
-								<li>Their only dependencies are <strong>Base</strong> styles.</li>
-								<li>Always use child selectors (<code>&gt;</code>) to minimize depth of applicability.</li>
-								<li><code>width</code>, <code>position</code>, and <code>margin</code> assume knowledge of the container - <code>width: 100%</code> or inline everything</li>
-							</ul>
-						</p>
-					</section>
-					<section>
-						<h2>However</h2>
-						<p>
-							They engage in some serious HTML ugliness to decouple CSS for nested components:
-						</p>
-						<pre><code data-trim>
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Envato</h2>
+                        <p>
+                            Envato is using a <a href="http://webuild.envato.com/blog/how-to-scale-and-maintain-legacy-css-with-sass-and-smacss/">modified SMACSS/BEM combo</a>. The way they handle child positioning is appalling, but they have some good ideas.
+                        </p>
+                        <p>
+                            <small>Andrew Colclough expands on the Envato approach with a style guide in <a href="https://medium.com/objects-in-space/f6f404727">Objects in Space</a>.</small>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Base/State</h2>
+                        <p>
+                            Pretty much straight SMACSS: 
+                            <ul>
+                                <li><strong>Base</strong> styles element defaults, <code>@import _normalize.scss</code>.</li>
+                                <li><strong>States</strong> are divided into global and module states</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Layout</h2>
+                        <p>Envato eschews the SMACSS <strong>Layout</strong> section entirely. Everything that is not a <strong>Base</strong> style or a global <strong>State</strong> is in a module.</p>
+                    </section>
+                    <section>
+                        <h2>Module/Layout Distinction Unnecessary?</h2>
+                        <p>Why?
+                            <ul>
+                                <li>Modules typically "lay out" their children anyway.</li>
+                                <li>Even if a component won't be reused, there is no benefit to treating it differently.</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Module</h2>
+                        <p>
+                            Envato has a great set of rules for <strong>Modules</strong>:
+                            <ul>
+                                <li>Modules are standalone and reusable.</li>
+                                <li>They assume no knowledge of their parent container.</li>
+                                <li>Their only dependencies are <strong>Base</strong> styles.</li>
+                                <li>Always use child selectors (<code>&gt;</code>) to minimize depth of applicability.</li>
+                                <li><code>width</code>, <code>position</code>, and <code>margin</code> assume knowledge of the container - <code>width: 100%</code> or inline everything</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>However</h2>
+                        <p>
+                            They engage in some serious HTML ugliness to decouple CSS for nested components:
+                        </p>
+                        <pre><code data-trim>
 <div class="my-module">
 
     <div class="my-module__child-component">
@@ -338,31 +341,31 @@ hr, .separated {
     </div>
 
 </div>
-						</code></pre>
-						<p>What.</p>
-					</section>
-					<section>
-						<h2>Mixins</h2>
-						<p>
-							Each mixin gets its own file in the <code>mixins</code> directory. This also applies to mixin libraries like <a href="http://compass-style.org/">Compass</a>.
-						</p>
-						<pre><code data-trim>
+                        </code></pre>
+                        <p>What.</p>
+                    </section>
+                    <section>
+                        <h2>Mixins</h2>
+                        <p>
+                            Each mixin gets its own file in the <code>mixins</code> directory. This also applies to mixin libraries like <a href="http://compass-style.org/">Compass</a>.
+                        </p>
+                        <pre><code data-trim>
 sass-dir/
     mixins/
         _embiggen.scss
         _vertical-rhythm.scss
         compass/
-				        </code></pre>
-					</section>
-					<section>
-						<h2>Grid</h2>
-						<p>
-							<q>Even our grid framework is just a module.</q>
-						</p>
-						<p>
-							Envato is using <a href="http://susy.oddbird.net/">Suzy</a>, which allows them to define grid placement within classes instead of using additional markup to position ui elements (a la Foundation).
-						</p>
-						<pre><code data-trim>
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Grid</h2>
+                        <p>
+                            <q>Even our grid framework is just a module.</q>
+                        </p>
+                        <p>
+                            Envato is using <a href="http://susy.oddbird.net/">Suzy</a>, which allows them to define grid placement within classes instead of using additional markup to position ui elements (a la Foundation).
+                        </p>
+                        <pre><code data-trim>
 .page__sidebar {
     @include span-columns(3, 12);
 }
@@ -370,53 +373,167 @@ sass-dir/
 .page__content {
     @include span-columns(9 omega, 12); 
 }
-						</code></pre>
-						<p>
-							<small>Parents positioning their child elements within themselves.</small>
-						</p>
-					</section>
-					<section>
-						<h2>However</h2>
-						<p>
-							First, every module that positions its children is now reliant on the grid module. Sure, you don't just get rid of your grid without consideration, but it's a big dependency and <em>not</em> a <strong>Base</strong> style.
-						</p>
-						<p>
-							Second, as noted earlier, they end up requiring tons of additional markup anyway. Why go through the trouble of using grid <code>@extends</code> if you're simply creating additional positioning classes?
-						</p>
-					</section>
-				</section>
-			</div>
+                        </code></pre>
+                        <p>
+                            <small>Parents positioning their child elements within themselves.</small>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>However</h2>
+                        <p>
+                            First, every module that positions its children is now reliant on the grid module. Sure, you don't just get rid of your grid without consideration, but it's a big dependency and <em>not</em> a <strong>Base</strong> style.
+                        </p>
+                        <p>
+                            Second, as noted earlier, they end up requiring tons of additional markup anyway. Why go through the trouble of using grid <code>@extends</code> if you're simply creating additional positioning classes?
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>CSS Wizardry on Scope</h2>
+                        <p>
+                            Harry is a badass and <a href="http://csswizardry.com/2013/05/scope-in-css/">wrote an article</a> a few months ago about 'scope' in CSS. There's a lot to take away.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>The Dilemma</h2>
+                        <p>
+                            CSS doesn't have scope, so loose selectors, like <code>.name</code>, are not explicit and lead to cross-naming and property leaking.
+                        </p>
+                        <p>
+                            Often, this is just a case of poor naming and not scope, but adopting the idea of (at least) quasi-scoping addresses a lot of problems.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>CSScope?</h2>
+                        <small>Bear with me.</small>
+                        <pre><code data-trim>
+/* sas-dir/module/_beer.scss */
 
-		</div>
+.beer {
+    opactiy: 0.5;
+}
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+    .name {
+        font-size: 2em;
+    }
+                        </code></pre>
+                        <p>
+                            Within <code>_beer.scss</code>, we have the class <code>.name</code>. It's meant to be part of the <strong>beer</strong> module, but if someone employs <code>.name</code> anywhere, we're going to pull our hair out. Global scope.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Nest it!</h2>
+                        <p>
+                            This seems like the easy solution:
+                        </p>
+                        <pre><code data-trim>
+/* sas-dir/module/_beer.scss */
 
-		<script>
+.beer {
+    
+    .name {
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+    }
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+}
+                        </code></pre>
+                    
+                        <p>
+                            Now these <code>.name</code> styles apply <em>only</em> inside the scope of <code>.beer</code>. Solved.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Don't Nest It.</h2>
+                        <p>
+                            Given that last bit, Sass will churn out:
+                        </p>
+                        <pre><code data-trim>
+.beer {
+}
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+.beer .name {
+}      
+                        </code></pre>
+                        <p>
+                            Which is expected. The problem is that <a href="http://www.youtube.com/watch?v=R-BX4N8egEc&hd=1&t=27m02s">it's bad</a>.
+                        </p> 
+                        <p>
+                            Mainly, we don't want <a href="http://csswizardry.com/2011/09/when-using-ids-can-be-a-pain-in-the-class/">unnecessary specificity</a>.
+                        </p>
+                        <small>So what now?</small>
+                    </section>
+                    <section>
+                        <h2>BEM</h2>
+                        <pre><code data-trim>
+/* sas-dir/module/_beer.scss */
 
-		</script>
+.beer {
+    opacity: 1em;
+}
 
-	</body>
+.beer__name {
+    border-radius: 2px;
+}
+                        </code></pre>
+                        <p>
+                            If we treat modules like namespaces, and namespace our selectors with BEM-style naming, we can quasi-scope our CSS - leaving us with perfectly specific, reusable classes that only apply when we want them to and don't compete for property inheritance.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Even Better</h2>
+                        <p>
+                            By combining BEM-style scoping with placeholder patterns, we can build out our scoped modules without having to worry about adding additional 'global' classes.
+                        </p>
+                        <pre><code data-trim>
+.beer {
+    @extend %amber;
+    opacity: 1em;
+}
+                        </code></pre>
+                        <small>Not</small>
+                        <pre><code data-trim>
+<div class="beer amber">
+    Beer
+</div>
+                        </code></pre>
+                        <p>
+                            Remember, modules have no notion of their position, so we won't should be using markup like <code>class="beer left"</code> anyway, which is the most prevalent anti-pattern.
+                        </p>
+                    </section>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
 </html>
