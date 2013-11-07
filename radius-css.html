@@ -93,7 +93,7 @@
                             This is also the place to <code>@import</code> our reset or normalization.
                         </p>
                         <pre><code data-trim>
-/* sass-dir/_base.scss */
+/* sass/_base.scss */
 
 body, form {
     margin: 0;
@@ -115,7 +115,7 @@ a:hover {
                             Out of the box, SMACSS uses the <strong>Layout</strong> category to house high-level single-use selectors that define content areas and positioning (e.g. <code>#header</code>). It can also house alternate layouts for these selectors based on wrapper classes, like <code>.l-fixed #header</code> and <code>.l-fluid #header</code>.
                         </p>
                         <pre><code data-trim>
-/* sass-dir/_layout.scss */
+/* sass/_layout.scss */
 
 #header, #article, #footer {
     width: 960px;
@@ -139,7 +139,7 @@ a:hover {
                             </ul>
                         </p>
                         <pre><code data-trim>
-/* sass-dir/module/_cup.scss */
+/* sass/module/_cup.scss */
 
 .cup {
     display: block;
@@ -164,7 +164,7 @@ a:hover {
                             <ul>
                                 <li>Global states like <code>.is-hidden</code> belong in the <code>_states.scss</code> file.</li>
                                 <li>States specific to certain modules, however, belong with the module they affect.</li>
-                                <li>Media queries are just fancy states, and SASS lets us nest them in modules.</li>
+                                <li>Media queries are just fancy states, and Sass lets us nest them in modules.</li>
                                 <li>States are also our JS dependency classes.</li>
                             </ul>
                         </p>
@@ -173,7 +173,7 @@ a:hover {
                     <section>
                         <h2>States in Action</h2>
                         <pre><code data-trim>
-/* sass-dir/_states.scss */
+/* sass/_states.scss */
 
 .is-hidden {
     position: absolute; 
@@ -185,7 +185,7 @@ a:hover {
                         </code></pre>
                         <pre><code data-trim>
 
-/* sass-dir/module/_beer.scss */
+/* sass/module/_beer.scss */
 
 .is-beer-cold {
     opacity: 0.5;
@@ -252,7 +252,7 @@ hr, .separated {
                             Cribbed from Taylor, this creates a lip above the content underneath it.
                         </p>
                         <pre><code data-trim>
-/* sass-dir/_patterns.scss */
+/* sass/_patterns.scss */
 
 %lip {
     clear: both;
@@ -264,7 +264,7 @@ hr, .separated {
                         </code></pre>
                         <pre><code data-trim>
 
-/* sass-dir/module/_beer.scss */
+/* sass/module/_beer.scss */
 
 .beer-rim {
     @extend %lip;
@@ -350,7 +350,7 @@ hr, .separated {
                             Each mixin gets its own file in the <code>mixins</code> directory. This also applies to mixin libraries like <a href="http://compass-style.org/">Compass</a>.
                         </p>
                         <pre><code data-trim>
-sass-dir/
+sass/
     mixins/
         _embiggen.scss
         _vertical-rhythm.scss
@@ -500,6 +500,134 @@ sass-dir/
                         <p>
                             Remember, modules have no notion of their position, so we shouldn't be using markup like <code>class="beer left"</code> anyway, which is the most prevalent anti-pattern.
                         </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Keeping it Clean</h2>
+                        <p>
+                            Dale Sande has <a href="http://gist.io/4436524">an awesome article</a> about building a UI from the inside out and avoiding pitfalls early on. There's a lot going on and a lot missing, but some choice bits to keep in mind.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>The Structure</h2>
+                        <pre><code data-trim>
+sass/
+    buttons/
+    color/
+    forms/
+    layouts/
+    modules/
+    typography/
+    ui_patterns/
+    _config.scss
+    _global_design.scss
+    _reset.scss
+    style.scss
+                        </code></pre>
+                        <p>
+                            Dale gets more atomized than we might want to at first, separating out base styles into their own directories. This is dependent less on best practice, I think, and more on necessity. Let's explode these and see what's going on.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Element Partials</h2>
+                        <pre><code data-trim>
+sass/
+    buttons/
+        _buttons.scss
+    forms/
+        _forms.scss
+    typography/
+        _typography.scss
+    _global_design.scss
+                        </code></pre>
+                        <p>
+                            Element partials map to our <strong>Base</strong> (partials being underscore prefixed files that get imported into your Sass manifest) - they create our UI foundation like establishing our baseline styles, vertical rhythm, etc.
+                        </p>
+                        <p> 
+                            Element partials might import mixins, other partials, and placeholders, but they themselves are <em>purely presentational</em>. That is, they don't establish any Sass functionality.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Custom Functions</h2>
+                        <pre><code data-trim>
+sass/
+    buttons/
+        _extends.scss
+        _functions.scss
+        _mixin.scss
+        _buttons.scss
+    modules/
+        registration/
+            _extends.scss
+            _functions.scss
+            _mixin.scss
+            _module_registration.scss
+                        </code></pre>
+                        <p>
+                            Sometimes modules and elements require Sass functions that aren't easily abstracted to the whole. Instead of fighting it and trying to build abstractable mixins, embrace it - just keep it organized and standardized. 
+                        </p>
+                        <p>
+                            And if it <em>can</em> be reused, make it a general mixin/function/pattern.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Modules</h2>
+                        <p>
+                            Dale gets a little convoluted with his distinction between modules and UI patterns (neither mapping exactly to what we've talked about). His rules for both, however, are spot on:
+                        </p>
+                        <p>
+                            <q>All modules should be name-spaced by the semantic name of the module itself. <code>.registration {}</code> or <code>.purchase {}</code> for example. If the sub-module is exclusive to the primary module then it would extend the name like so, <code>.purchase_summary {}</code>.</q>
+                        </p>
+                        <p>
+                            <q>Keep in mind that at the level we are working at it is scoped to the module itself. Keeping the selectors shallow will encourage reuse throughout the application without causing additional engineering. If you find yourself engineering complex UIs within the module, this may be an opportunity to abstract into a mixin or silent placeholder selector.</q>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>The Layout Problem</h2>
+                        <p>
+                            Our <strong>Base</strong> is full of element partials that lay the UI foundation. <strong>Modules</strong> are standalone elements that are unaware of their containers. So how do we start assembling the page without additional markup?
+                        </p>
+                        <p>
+                            We namespace layouts.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Layouts</h2>
+                        <p>
+                            Inside of our layout directory, we have several files named after our different views. In those files, we have a namespace named for the view, prefixed with 'layout' for clarity (e.g. <code>.layout-dashboard</code>). We then nest (I know, I know - bear with me a little longer) any modules that view utilizes and define their positioning using <code>@extend</code>, mixins, or by hand. Finally, we dynamically apply the appropriate namespace class to <code>body</code>, and voila:
+                        </p>
+                        <p>
+                            Standalone, reusable modules without any container assumptions that are perfectly positioned without additional markup.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>tl;dr</h2>
+                        <pre><code data-trim>
+/* sass/layouts/_layout-countertop.scss */
+
+.layout-countertop.scss {
+    
+    .beer {
+        @include span-columns(3);
+    }
+
+    .cheeseboard {
+        @include span-columns(8, omega);
+    }
+
+}
+                        </code></pre>
+                        <pre><code data-trim>
+&lt;body class="layout-countertop"&gt;
+    <div class="beer">
+        Alcohol.
+    </div>
+    <div class="cheeseboard">
+        Cheddar.
+    </div>
+&lt;/body&gt;
+                        </code></pre>
                     </section>
                 </section>
             </div>
