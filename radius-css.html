@@ -478,7 +478,7 @@ sass/
 }
                         </code></pre>
                         <p>
-                            If we treat modules like namespaces, and namespace our selectors with BEM-style naming, we can quasi-scope our CSS - leaving us with perfectly specific, reusable classes that only apply when we want them to and don't compete for property inheritance.
+                            If we treat modules like namespaces, and name our selectors with BEM-style naming, we can quasi-scope our CSS - leaving us with perfectly specific, reusable classes that only apply when we want them to and don't compete for property inheritance.
                         </p>
                     </section>
                     <section>
@@ -590,13 +590,13 @@ sass/
                             Our <strong>Base</strong> is full of element partials that lay the UI foundation. <strong>Modules</strong> are standalone elements that are unaware of their containers. So how do we start assembling the page without additional markup?
                         </p>
                         <p>
-                            We namespace layouts.
+                            We treat layouts as a scope.
                         </p>
                     </section>
                     <section>
                         <h2>Layouts</h2>
                         <p>
-                            Inside of our layout directory, we have several files named after our different views. In those files, we have a namespace named for the view, prefixed with 'layout' for clarity (e.g. <code>.layout-dashboard</code>). We then nest (I know, I know - bear with me a little longer) any modules that view utilizes and define their positioning using <code>@extend</code>, mixins, or by hand. Finally, we dynamically apply the appropriate namespace class to <code>body</code>, and voila:
+                            Inside of our layout directory, we have several files named after our different views. In those files, we have a namespace named for the view, prefixed with 'layout' for clarity (e.g. <code>.layout-dashboard</code>). We then nest (I know, I know - bear with me a little longer) any modules that view utilizes and define their positioning using <code>@extend</code>, mixins, or by hand. Finally, we dynamically apply the appropriate class to <code>body</code>, and voila:
                         </p>
                         <p>
                             Standalone, reusable modules without any container assumptions that are perfectly positioned without additional markup.
