@@ -645,8 +645,9 @@ sass/
     layout/
     module/
     _base.scss
+    _patterns.scss
     _states.scss
-    _variabls.scss
+    _variables.scss
     app.scss
                         </code></pre>
                         <p>
@@ -677,11 +678,31 @@ sass/
                     <section>
                         <h2>Base</h2>
                         <p>
-                            As with SMACSS, <strong>Base</strong> is where we define our UI foundation. The main rule here is it won't contain anything other than element, descendent, child, attribute, and/or pseudo-class selectors.
+                            <strong>Base</strong> is where we define our UI foundation. The main rule here is it won't contain anything other than element, descendent, child, attribute, and/or pseudo-class selectors.
                         </p>
                         <p>
                             We will also import our normalization in this file, not the manifest - normalization is not modular, it defines our element foundation, even if it's an import.
                         </p>
+                    </section>
+                    <section>
+                        <h2>Base Examples</h2>
+                        <pre><code data-trim>
+/* sass/_base.scss */
+
+body, form {
+    margin: 0;
+    padding: 0; 
+}
+
+a:hover {
+    color: #03F;
+}
+
+input[type=text] {
+   font-weight: 300;
+}
+                        </code></pre>
+
                     </section>
                     <section>
                         <h2>Expanding Base</h2>
@@ -701,10 +722,31 @@ sass/
                                 <li>No IDs or element selectors.</li>
                                 <li>No property dependencies outside the module, patterns, or base.</li>
                                 <li>They assume no knowledge of their parent container.</li>
-                                <li>Always use child selectors (>) to minimize depth of applicability.</li>
                                 <li>No nesting - namespace our selectors with BEM-style naming to scope CSS.</li>
                             </ul>
                         </p>
+                    </section>
+                    <section>
+                        <h2>Module Example</h2>
+                        <pre><code data-trim>
+/* sass/modules/beer/_beer.scss */
+
+.beer {
+    height: 1pt;
+    color: amber;
+    opacity: 0.4;
+}
+
+.beer__name {
+    font-size: 1.618rem;
+}
+
+.beer__foam {
+    color: beige;
+    weight: bold;
+    padding: 1em;
+}
+                        </code></pre>
                     </section>
                     <section>
                         <h2>Expanding Modules</h2>
@@ -724,11 +766,38 @@ sass/
                     <section>
                         <h2>State</h2>
                         <p>
-                            States follow the basic SMACCS rules and categorization. Thank god something is simple.
+                            <strong>States</strong> represent modules, layouts, and elements in various states. They override default styles, and can be applied globally or as module states.
+                            <ul>
+                                <li>Global states like <code>.is-hidden</code> belong in the <code>_states.scss</code> file.</li>
+                                <li>States specific to certain modules, however, belong with the module they affect.</li>
+                                <li>Media queries are just fancy states, and Sass lets us nest them in modules.</li>
+                                <li>States are also our JS dependency classes.</li>
+                            </ul>
                         </p>
-                        <p>
-                            States live in <code>sass/_states.scss</code> unless specific to a module.
-                        </p>
+                        <small>Yes, this is identical to the earlier slide.</small>
+                    </section>
+                    <section>
+                        <h2>States in Action</h2>
+                        <pre><code data-trim>
+/* sass/_states.scss */
+
+.is-hidden {
+    position: absolute; 
+    overflow: hidden; 
+    clip: rect(0 0 0 0); 
+    height: 1px; width: 1px; 
+    margin: -1px; padding: 0; border: 0; 
+}
+                        </code></pre>
+                        <pre><code data-trim>
+
+/* sass/module/_beer.scss */
+
+.is-beer-cold {
+    opacity: 0.5;
+    height: 100%;
+}
+                        </code></pre>
                     </section>
                     <section>
                         <h2>Layout</h2>
@@ -754,7 +823,7 @@ sass/
                     <section>
                         <h2>Patterns</h2>
                         <p>
-                            Our <code>_patterns.scss</code> partial will hold all of our UI placehold properties. Remember:
+                            Our <code>_patterns.scss</code> partial will hold all of our UI placehold properties.
                             <ul>
                                 <li>Patterns should do <em>one thing</em> and do it well</li>
                                 <li>Patterns within patterns are cool, but don't go crazy</li>
@@ -763,6 +832,33 @@ sass/
                         <p>
                             As a warning, module-specific patterns are allowed; however, patterns help describe the foundational properties of the UI, right after elements. If you are making a lot of module-specific patterns, take a step back, it might be a bad sign.
                         </p>
+                    </section>
+                     <section>
+                        <h2>Pattern Example</h2>
+                        <p>
+                            <small>Cribbed from Ian Taylor, this creates a lip above the content underneath it.</small>
+                        </p>
+                        <pre><code data-trim>
+/* sass/_patterns.scss */
+
+%lip {
+    clear: both;
+    display: block;
+    height: 5px;
+    background: url('/public/images/patterns/lip/lip.png') no-repeat;
+    background-size: 100% 100%;
+}
+                        </code></pre>
+                        <pre><code data-trim>
+
+# sass/module/_beer.scss
+
+.beer-rim {
+    @extend %lip;
+    opacity: 0.5;
+    height: 100%;
+}
+                        </code></pre>
                     </section>
                     <section>
                         <h2>The big picture</h2>
